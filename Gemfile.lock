@@ -20,6 +20,9 @@ GEM
     celluloid-io (0.15.0)
       celluloid (>= 0.15.0)
       nio4r (>= 0.5.0)
+    celluloid-redis (0.0.2)
+      celluloid-io (>= 0.13.0.pre)
+      redis
     http (0.6.1)
       http_parser.rb (~> 0.6.0)
     http_parser.rb (0.6.0)
@@ -32,6 +35,7 @@ GEM
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
     rack (1.5.2)
+    redis (3.1.0)
     reel (0.5.0)
       celluloid (>= 0.15.1)
       celluloid-io (>= 0.15.0)
@@ -48,6 +52,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activesupport
   angelo
   celluloid-http
+  celluloid-redis
   nokogiri
+  redis
