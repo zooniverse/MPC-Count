@@ -9,5 +9,3 @@ class MinorPlanetCounter
     end
   end
 end
-
-p MinorPlanetCounter.all_time_minor_planet_count
