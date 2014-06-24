@@ -5,7 +5,7 @@ require_relative './minor_planet_counter'
 class MPCFetcher < Angelo::Base
 
   def cors_headers 
-    headers({'Access-Control-Allow_origin:' => '*'})
+    headers({'Access-Control-Allow-Origin' => '*'})
   end
 
   task :mpc_count do
@@ -16,6 +16,7 @@ class MPCFetcher < Angelo::Base
     f = future :mpc_count
     content_type :json
     cors_headers
+    p f.value
     f.value 
   end
 
