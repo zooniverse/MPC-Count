@@ -30,7 +30,6 @@ class MPCFetcher < Angelo::Base
   end
 
   get '/pingdom' do
-    content_type 'text/plain'
     cors_headers
     'ok'
   end
