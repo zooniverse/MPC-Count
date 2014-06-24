@@ -16,10 +16,8 @@ class RedisCache
 
   def fetch_or_update(key, ttl, &block)
     resp = @conn.get(key)
-    p resp
     return resp unless resp.nil?
     value = block.call
-    p key, value, ttl
     @conn.set(key, value)
     @conn.expire(key, ttl.to_i)
     return value
