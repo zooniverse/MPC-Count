@@ -6,12 +6,16 @@ require_relative './redis_cache'
 
 class MPCFetcher < Angelo::Base
 
-  def redis_conf
+  def self.redis_conf
     {url: ENV.fetch('REDISTOGO_URL', 'redis://localhost:6379')}
   end
 
-  def redis
+  def self.redis
     @redis ||= RedisCache.new(redis_conf)
+  end
+
+  def redis
+    self.class.redis
   end
 
   def cors_headers 
