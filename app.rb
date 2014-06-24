@@ -1,27 +1,29 @@
-require 'sinatra'
+require 'angelo'
 require 'json'
-require 'rack/cors'
 require_relative './minor_planet_counter'
 
-APP_ROOT = File.dirname(__FILE__)
+class MPCFetcher < Angelo::Base
 
-class MPCFetcher < Sinatra::Application
-  set :root, APP_ROOT
+  def cors_headers 
+    headers({'Access-Control-Allow_origin:' => '*'})
+  end
 
-  use Rack::Cors do
-    allow do
-      origins '*'
-      resource '/*', methods: [:get], headers: :all
-    end
+  task :mpc_count do
+    {count: MinorPlanetCounter.all_time_minor_planet_count}.to_json
   end
 
   get '/count' do
-    content_type "application/json"
-    {count: MinorPlanetCounter.all_time_minor_planet_count}.to_json
+    f = future :mpc_count
+    content_type :json
+    cors_headers
+    f.value 
   end
 
   get '/pingdom' do
     content_type 'text/plain'
+    cors_headers
     'ok'
   end
 end
+
+MPCFetcher.run

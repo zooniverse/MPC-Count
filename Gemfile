@@ -1,7 +1,8 @@
 # A sample Gemfile
 source "https://rubygems.org"
 
-gem 'sinatra'
+ruby '2.1.2'
+
+gem 'angelo'
 gem 'nokogiri'
-gem 'rack-cors', require: 'rack/cors'
-gem 'thin'
+gem 'celluloid-http'
